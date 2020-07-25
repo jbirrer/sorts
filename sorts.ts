@@ -4,12 +4,24 @@ let c: number[] = [12, 3, 4, 11, 1, 124, 2];
 let d: number[] = [12, 3, 4, 11, 1, 124, 2];
 let e: number[] = [12, 3, 4, 11, 1, 124, 2];
 let f: number[] = [12, 3, 4, 11, 1, 124, 2];
+let g: number[] = [12, 3, 4, 11, 1, 123, 2];
 // swap
 
 let swap = (array: number[], index1: number, index2: number) => {
     let temp = array[index1];
     array[index1] = array[index2];
     array[index2] = temp;
+};
+
+// isSorted
+
+let isSorted = (arr: number[]) => {
+    for (let i: number = 0; i < arr.length; i++) {
+        if (arr[i - 1] > arr[i]) {
+            return false;
+        }
+    }
+    return true;
 };
 
 // bubble sort
@@ -105,7 +117,7 @@ function partition(arr: number[], left: number, right: number) {
             j--;
         }
         if (i <= j) {
-            swap(arr, i, j); 
+            swap(arr, i, j);
             i++;
             j--;
         }
@@ -129,6 +141,21 @@ function quickSort(arr: number[], left: number, right: number) {
     return arr;
 }
 
+// bogoSort
+
+let bogoSort = (arr: number[]) => {
+    let shuffle = (arr: number[]) => {
+        for (let i: number = 0; i < arr.length; i++) {
+            swap(arr, i, Math.round(Math.random() * i));
+        }
+        return arr;
+    };
+    while (isSorted(arr) == false) {
+        shuffle(arr);
+    }
+    return arr;
+};
+
 var sortedArray: number[] = quickSort(f, 0, f.length - 1);
 console.log(sortedArray);
 
@@ -137,3 +164,5 @@ console.log(selectionsort(b));
 recBubbleSort(c, c.length);
 console.log(insertionSort(d));
 console.log(gnomeSort(e));
+//console.log(bogoSort(g));
+
