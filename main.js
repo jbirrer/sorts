@@ -2,6 +2,7 @@ let a = [12, 3, 4, 11, 1, 124, 2];
 let b = [12, 3, 4, 11, 1, 124, 2];
 let c = [12, 3, 4, 11, 1, 124, 2];
 let d = [12, 3, 4, 11, 1, 124, 2];
+let e = [12, 3, 4, 11, 1, 124, 2];
 
 // swap
 
@@ -31,8 +32,8 @@ bubblesort = arr => {
 // issue: return type undefined
 
 recBubbleSort = (arr, n) => {
-    if (n === 1) {
-        return arr;
+    if (n == 1) {
+        return console.log(arr);
     }
     for (let i = 0; i < n - 1; i++) {
         if (arr[i] > arr[i + 1]) {
@@ -58,8 +59,45 @@ selectionsort = arr => {
     return arr;
 }
 
+// insertion sort
+
+insertionSort = (arr) => {
+    let n = arr.length;
+    for (let i = 0; i < n; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}
+
+// gnome sort
+
+gnomeSort = (arr) => {
+    let i = 0;
+    let n = arr.length;
+    while (i < n) {
+        if (i == 0) { i++; }
+        if (arr[i] > arr[i - 1]) {
+            i++;
+        }
+        else{
+            swap(arr, i, i-1);
+            i--;
+        }
+
+    }
+    return arr;
+}
+
 console.log(bubblesort(a));
 console.log(selectionsort(b));
-console.log(recBubbleSort(c, c.length));
+recBubbleSort(c, c.length);
+console.log(insertionSort(d));
+console.log(gnomeSort(e));
 
 
