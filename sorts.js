@@ -3,6 +3,7 @@ var b = [12, 3, 4, 11, 1, 124, 2];
 var c = [12, 3, 4, 11, 1, 124, 2];
 var d = [12, 3, 4, 11, 1, 124, 2];
 var e = [12, 3, 4, 11, 1, 124, 2];
+var f = [12, 3, 4, 11, 1, 124, 2];
 // swap
 var swap = function (array, index1, index2) {
     var temp = array[index1];
@@ -72,14 +73,50 @@ var gnomeSort = function (arr) {
         }
         if (arr[i] > arr[i - 1]) {
             i++;
-        }
-        else {
+        } else {
             swap(arr, i, i - 1);
             i--;
         }
     }
     return arr;
 };
+// --quick sort------------------------------------------------------------------------
+function partition(arr, left, right) {
+    var pivot = arr[Math.floor((right + left) / 2)], //middle element
+        i = left, //left pointer
+        j = right; //right pointer
+    while (i <= j) {
+        while (arr[i] < pivot) {
+            i++;
+        }
+        while (arr[j] > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swap(arr, i, j);
+            i++;
+            j--;
+        }
+    }
+    return i;
+}
+function quickSort(arr, left, right) {
+    var index;
+    if (arr.length > 1) {
+        index = partition(arr, left, right); //index returned from partition
+        if (left < index - 1) {
+            //more elements on the left side of the pivot
+            quickSort(arr, left, index - 1);
+        }
+        if (index < right) {
+            //more elements on the right side of the pivot
+            quickSort(arr, index, right);
+        }
+    }
+    return arr;
+}
+var sortedArray = quickSort(f, 0, f.length - 1);
+console.log(sortedArray);
 console.log(bubblesort(a));
 console.log(selectionsort(b));
 recBubbleSort(c, c.length);
