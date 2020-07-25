@@ -1,3 +1,4 @@
+'use strict';
 let a: number[] = [12, 3, 4, 11, 1, 124, 2];
 let b: number[] = [12, 3, 4, 11, 1, 124, 2];
 let c: number[] = [12, 3, 4, 11, 1, 124, 2];
