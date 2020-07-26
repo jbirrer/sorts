@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 let a: number[] = [12, 3, 4, 11, 1, 124, 2];
 let b: number[] = [12, 3, 4, 11, 1, 124, 2];
 let c: number[] = [12, 3, 4, 11, 1, 124, 2];
@@ -6,6 +6,8 @@ let d: number[] = [12, 3, 4, 11, 1, 124, 2];
 let e: number[] = [12, 3, 4, 11, 1, 124, 2];
 let f: number[] = [12, 3, 4, 11, 1, 124, 2];
 let g: number[] = [12, 3, 4, 11, 1, 123, 2];
+let h: number[] = [12, 3, 4, 11, 1, 123, 2];
+let i: number[] = [12, 3, 4, 11, 1, 123, 2];
 // swap
 
 let swap = (array: number[], index1: number, index2: number) => {
@@ -157,6 +159,33 @@ let bogoSort = (arr: number[]) => {
     return arr;
 };
 
+// mergeSort
+
+let mergeSort = (arr: number[]): number[] => {
+    if (arr.length <= 1) return arr;
+    let middle: number = Math.floor(arr.length / 2);
+    let left: number[] = arr.slice(0, middle);
+    let right: number[] = arr.slice(middle);
+    return merge(mergeSort(left), mergeSort(right));
+};
+
+let merge = (left: number[], right: number[]) => {
+    let result: number[] = [],
+        leftIndex: number = 0,
+        rightIndex: number = 0;
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+};
+
 var sortedArray: number[] = quickSort(f, 0, f.length - 1);
 console.log(sortedArray);
 
@@ -166,4 +195,4 @@ recBubbleSort(c, c.length);
 console.log(insertionSort(d));
 console.log(gnomeSort(e));
 //console.log(bogoSort(g));
-
+console.log(mergeSort(h));
